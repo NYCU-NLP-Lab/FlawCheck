@@ -6,30 +6,31 @@ import os
 import concurrent.futures
 from pathlib import Path
 
-logging.basicConfig(filename='gpt_result.log', level=logging.ERROR, format='[%(threadName)s] %(message)s')
+logging.basicConfig(
+    filename="gpt_result.log",
+    level=logging.ERROR,
+    format="[%(threadName)s] %(message)s",
+)
 
 url = "https://api.openai.com/v1/chat/completions"
-key = os.environ['openai_token']
+key = os.environ["openai_token"]
 
 
 def get_response(prompt):
-    payload={
+    payload = {
         "model": "gpt-3.5-turbo",
         "messages": [{"role": "user", "content": prompt}],
         "temperature": 0.5,
     }
-    headers={
-        "Authorization": f"Bearer {key}",
-        "Content-Type":"application/json"
-    }
+    headers = {"Authorization": f"Bearer {key}", "Content-Type": "application/json"}
     try:
         res = requests.post(url=url, data=json.dumps(payload), headers=headers)
         res = json.loads(res.text)
-        return res['choices'][0]['message']['content']
+        return res["choices"][0]["message"]["content"]
     except Exception as e:
-        logging.error(f'Error: {e}, Response: {res}')
+        logging.error(f"Error: {e}, Response: {res}")
         return ""
-    
+
 
 def get_bias_prompt(claim, review, biases):
     selected_bias = ""
@@ -57,15 +58,23 @@ def get_dict_result(response):
 
     matches = pattern.findall(response)
     dict_result = {item.strip(): explanation.strip() for item, explanation in matches}
-    
+
     return dict_result
 
 
 def handle_by_id(id):
     review = json.load(open(f"./Datasets/FlawCheck/{split}/review/{id}", "r"))
     claim = json.load(open(f"./Datasets/FlawCheck/{split}/claim/{id}", "r"))
-    biases = ["Contradicting facts", "Exaggeration", 'Understatement', "Occasional faltering", "Insufficient support", "Problematic assumptions", "Existence of alternative explanations"]
-    
+    biases = [
+        "Contradicting facts",
+        "Exaggeration",
+        "Understatement",
+        "Occasional faltering",
+        "Insufficient support",
+        "Problematic assumptions",
+        "Existence of alternative explanations",
+    ]
+
     bias_prompt = get_bias_prompt(claim, review, biases)
     aspect_prompt = get_aspect_prompt(claim, review)
 
@@ -91,18 +100,20 @@ def handle_by_id(id):
 
     return
 
+
 if __name__ == "__main__":
-    for split in ['test']:
+    for split in ["test"]:
         path = Path(f"./Datasets/FlawCheck/{split}/review/")
-        sub = list(path.glob('pub_*.json'))
+        sub = list(path.glob("pub_*.json"))
 
         ids = []
         for sub_path in sub:
-            id = str(sub_path).split('/')[-1]
+            id = str(sub_path).split("/")[-1]
             import os
+
             if os.path.exists(f"./openai/aspect/{id}"):
                 continue
             ids.append(id)
-        
+
         with concurrent.futures.ThreadPoolExecutor(max_workers=2) as executor:
             executor.map(handle_by_id, ids)
