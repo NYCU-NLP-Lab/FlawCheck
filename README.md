@@ -20,3 +20,23 @@ For more details, please refer to the paper.
 In this repo, we provided a direct access to FlawCheck dataset, including generated aspects, flaw explanation, and the renewal review articles.
 We use WatClaimCheck's claim index refering to each claim, and metadata like premise articles can also be accessed in WatClaimCheck dataset using the index.
 As a result, you have to request the access to WatClaimCheck dataset to use this dataset.
+
+## Usage
+
+### Dataset
+
+**Dataset structure** 
+
+All data is under the ``dataset`` folder, and the file structure looks like this:
+```bash
+├── dataset
+│   ├── train
+│   │   ├── aspect
+│   │   │   ├── 1.json
+│   │   │   ├── 2.json
+│   │   │   └── 3.json
+│   │   ├── flaw
+│   │   └── review
+│   ├── dev
+|   └── test
+```
