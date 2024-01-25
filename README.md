@@ -4,9 +4,8 @@ Each claim is annotated with maximum four aspects and the explanations of presen
 This dataset encapsulates the expertise of human fact-checking professionals, establishing a new benchmark of flaw-oriented automatic fact-checking. 
 
 ## Information⚠️
-The paper is currently under the review process.
-We now release an example dataset of 500 instances.
-The complete dataset will be made available upon the acceptance of this paper.
+The paper is currently undergoing the review process. 
+Nonetheless, we have made all the data accessible, and you can find the arXiv version of the paper [here]().
 
 ## Introduction
 This dataset is based on a previous work: [WatClaimCheck](https://github.com/nxii/WatClaimCheck).
@@ -40,3 +39,8 @@ All data is under the ``dataset`` folder, and the file structure looks like this
 │   ├── dev
 |   └── test
 ```
+
+**Dataset collection** 
+
+We also provide the source code responsible for data collection in FlawCheck, accessible at ``code/get_gpt_result.py``. 
+To replicate the process, kindly ensure that you store your own OpenAI access token in the environment variables.
