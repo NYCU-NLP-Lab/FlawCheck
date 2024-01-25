@@ -89,14 +89,14 @@ precision = {}
 recall = {}
 f1 = {}
 
-path = Path(f"./Datasets/RefuteClaim/test/evidence/")
+path = Path(f"./Datasets/FlawCheck/test/evidence/")
 sub = path.glob("*")
 for file in tqdm(list(sub)):
     id = str(file).split("/")[-1]
     name = id.split(".")[0]
-    claim = json.load(open(f"./Datasets/RefuteClaim/test/claim/{id}", "r"))
-    evidence = json.load(open(f"./Datasets/RefuteClaim/test/evidence/{id}", "r"))
-    review = json.load(open(f"./Datasets/RefuteClaim/test/review/{id}", "r"))
+    claim = json.load(open(f"./Datasets/FlawCheck/test/claim/{id}", "r"))
+    evidence = json.load(open(f"./Datasets/FlawCheck/test/evidence/{id}", "r"))
+    review = json.load(open(f"./Datasets/FlawCheck/test/review/{id}", "r"))
     review = str(review)
     prompt = get_baseline_prompt(claim, evidence)
 
