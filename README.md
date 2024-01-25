@@ -58,6 +58,7 @@ For inference, utilize ``utils/Retriever/retrieve.py`` to extract content from r
 In this paper, we employed [Vicuna-7b-v1.5](https://github.com/lm-sys/FastChat) as the foundational LLM. 
 Refer to the original repository for usage details. 
 In the direct usage scenario, the roles of various agents are solely determined by the provided prompts.
+The example in ``code/predict.py`` illustrates justification generation using LLM in a baseline setting.
 
 **Finetuning**
 
