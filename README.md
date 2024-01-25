@@ -44,3 +44,9 @@ All data is under the ``dataset`` folder, and the file structure looks like this
 
 We also provide the source code responsible for data collection in FlawCheck, accessible at ``code/get_gpt_result.py``. 
 To replicate the process, kindly ensure that you store your own OpenAI access token in the environment variables.
+
+### Content retrieval
+
+We employed the [Haystack](https://haystack.deepset.ai/) framework to construct the retriever, responsible for fetching pertinent evidence to assess claims. 
+To prepare the data for training the retriever model with WatClaimCheck data, refer to ``utils/Retriever/prepare_data.py``. 
+For inference, utilize ``utils/Retriever/retrieve.py`` to extract content from raw evidence.
