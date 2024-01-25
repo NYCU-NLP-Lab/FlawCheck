@@ -54,11 +54,13 @@ For inference, utilize ``utils/Retriever/retrieve.py`` to extract content from r
 ### LLM Agents
 
 **Direct Usage**
+
 In this study, we employed [Vicuna-7b-v1.5](https://github.com/lm-sys/FastChat) as the foundational LLM. 
 Refer to the original repository for usage details. 
 In the direct usage scenario, the roles of various agents are solely determined by the provided prompts.
 
 **Finetuning**
+
 For finetuning the LLM using LoRA, we utilized the [LMFlow](https://github.com/OptimalScale/LMFlow) framework. 
 Follow the instructions in the original repository to set up the framework correctly for your needs.
 We made modifications solely to the ``run_finetune_with_lora.sh.sh`` file, adapting it for custom settings and data for different components within the proposed RefuteClaim framework.
