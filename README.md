@@ -55,7 +55,7 @@ For inference, utilize ``utils/Retriever/retrieve.py`` to extract content from r
 
 **Direct Usage**
 
-In this study, we employed [Vicuna-7b-v1.5](https://github.com/lm-sys/FastChat) as the foundational LLM. 
+In this paper, we employed [Vicuna-7b-v1.5](https://github.com/lm-sys/FastChat) as the foundational LLM. 
 Refer to the original repository for usage details. 
 In the direct usage scenario, the roles of various agents are solely determined by the provided prompts.
 
