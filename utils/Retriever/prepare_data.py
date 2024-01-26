@@ -5,7 +5,7 @@ import json
 channel = "train"
 
 output = []
-path = Path(f"../Datasets/FlawCheck/{channel}/review")
+path = Path(f"../../dataset/{channel}/review")
 sub = list(path.glob("*.json"))
 for pos in sub:
     datapoint = {}

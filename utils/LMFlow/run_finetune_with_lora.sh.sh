@@ -2,9 +2,9 @@
 # Please run this script under ${project_id} in project directory of
 
 # Parses arguments
-model_name_or_path=gpt2
-dataset_path=data/alpaca/train
-output_dir=output_models/finetune
+model_name_or_path=/root/.cache/huggingface/hub/models--lmsys--vicuna-7b-v1.5/snapshots/de56c35b1763eaae20f4d60efd64af0a9091ebe5
+dataset_path=../../lora_dataset
+output_dir=../../models/vicuna
 deepspeed_args="--master_port=11000"
 
 while [[ $# -ge 1 ]]; do

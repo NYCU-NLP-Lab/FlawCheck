@@ -63,8 +63,8 @@ def get_dict_result(response):
 
 
 def handle_by_id(id):
-    review = json.load(open(f"./Datasets/FlawCheck/{split}/review/{id}", "r"))
-    claim = json.load(open(f"./Datasets/FlawCheck/{split}/claim/{id}", "r"))
+    review = json.load(open(f"../dataset/{split}/review/{id}", "r"))
+    claim = json.load(open(f"../dataset/{split}/claim/{id}", "r"))
     biases = [
         "Contradicting facts",
         "Exaggeration",
@@ -86,7 +86,7 @@ def handle_by_id(id):
     if bias_dict == {}:
         logging.error(f"Error: Can't get bias dict - {id}")
     else:
-        json.dump(bias_dict, open(f"./Datasets/FlawCheck/{split}/bias/{id}", "w"))
+        json.dump(bias_dict, open(f"../dataset/{split}/bias/{id}", "w"))
 
     aspect_response = ""
     while aspect_response == "":
@@ -96,14 +96,14 @@ def handle_by_id(id):
     if aspect_dict == {}:
         logging.error(f"Error: Can't get aspect dict - {id}")
     else:
-        json.dump(aspect_dict, open(f"./Datasets/FlawCheck/{split}/aspect/{id}", "w"))
+        json.dump(aspect_dict, open(f"../dataset/{split}/aspect/{id}", "w"))
 
     return
 
 
 if __name__ == "__main__":
     for split in ["test"]:
-        path = Path(f"./Datasets/FlawCheck/{split}/review/")
+        path = Path(f"../dataset/{split}/review/")
         sub = list(path.glob("pub_*.json"))
 
         ids = []

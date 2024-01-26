@@ -101,9 +101,9 @@ id2label = {0: "correct", 1: "partly false", 2: "incorrect", 3: "unproven"}
 label2id = {"correct": 0, "partly false": 1, "incorrect": 2, "unproven": 3}
 
 model = AutoModelForSequenceClassification.from_pretrained(
-    "xlm-roberta-base", num_labels=4, id2label=id2label, label2id=label2id
+    "xlm-roberta-large", num_labels=4, id2label=id2label, label2id=label2id
 )
-tokenizer = AutoTokenizer.from_pretrained("xlm-roberta-base")
+tokenizer = AutoTokenizer.from_pretrained("xlm-roberta-large")
 
 
 def preprocess_function(examples):
@@ -112,7 +112,7 @@ def preprocess_function(examples):
     )
 
 
-data = json.load(open("./Datasets/WatClaimCheck/train.json", "r"))
+data = json.load(open("../WatClaimCheck/train.json", "r"))
 wat__labels = []
 wat__id = []
 for d in data:
@@ -125,7 +125,7 @@ for l in wat__labels:
     wat_labels.append(new_wat_labels[l])
 wat_dict = dict(zip(wat__id, wat_labels))
 
-path = Path(f"./Datasets/FlawCheck/train/review/")
+path = Path(f"../dataset/train/review/")
 sub = path.glob("*")
 sub = list(sub)
 
@@ -138,7 +138,7 @@ for s in sub:
     name = id.split("_")[1]
     name = name.split(".")[0]
     review = json.load(open(s, "r"))
-    claim = json.load(open(f"./Datasets/FlawCheck/train/claim/{id}", "r"))
+    claim = json.load(open(f"../dataset/train/claim/{id}", "r"))
     dataset.append(
         {
             "text": f"Claim: {str(claim)}\nReview:{str(review)}",
@@ -155,7 +155,7 @@ from transformers import Trainer, TrainingArguments
 from transformers import DataCollatorWithPadding
 
 training_args = TrainingArguments(
-    output_dir=f"./models/roberta",
+    output_dir=f"../models/roberta",
     learning_rate=2e-5,
     per_device_train_batch_size=32,
     per_device_eval_batch_size=32,

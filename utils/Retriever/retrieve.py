@@ -2,7 +2,6 @@ from haystack.nodes import DensePassageRetriever
 from haystack.document_stores import InMemoryDocumentStore
 import concurrent.futures
 import json
-import pandas as pd
 from tqdm import tqdm
 import os
 
@@ -56,9 +55,9 @@ def get_evidence(claim, evidence):
 # WatClaimCheck
 def run_thread_wat(x):
     id = x["label"]["id"]
-    if not os.path.exists(f"../Datasets/WatClaimCheck/review/{id}.json"):
+    if not os.path.exists(f"../../WatClaimCheck/review/{id}.json"):
         return
-    with open(f"../Datasets/WatClaimCheck/review/{id}.json", "r") as file:
+    with open(f"../../WatClaimCheck/review/{id}.json", "r") as file:
         review = json.load(file)
     if review == []:
         return
@@ -69,7 +68,7 @@ def run_thread_wat(x):
         output_split = input_split
 
     json.dump(
-        review, open(f"../Datasets/FlawCheck/{output_split}/review/wat_{id}.json", "w")
+        review, open(f"../../dataset/{output_split}/review/wat_{id}.json", "w")
     )
     claim = x["metadata"]["claim"]
     ruling = get_ruling(claim, review)
@@ -77,28 +76,28 @@ def run_thread_wat(x):
     if output_split == "test":
         evidence_pool = []
         for article in files.values():
-            with open(f"../Datasets/WatClaimCheck/articles/{article}", "r") as file:
+            with open(f"../../WatClaimCheck/articles/{article}", "r") as file:
                 evidence = json.load(file)
             evidence_pool += evidence
         select_evidence = get_evidence(claim, evidence_pool)
 
         with open(
-            f"../Datasets/FlawCheck/{output_split}/claim/wat_{id}.json", "w"
+            f"../../dataset/{output_split}/claim/wat_{id}.json", "w"
         ) as file:
             json.dump(claim, file)
         with open(
-            f"../Datasets/FlawCheck/{output_split}/evidence/wat_{id}.json", "w"
+            f"../../dataset/{output_split}/evidence/wat_{id}.json", "w"
         ) as file:
             json.dump(select_evidence, file)
 
     with open(
-        f"../Datasets/FlawCheck/{output_split}/selected_review/wat_{id}.json", "w"
+        f"../../dataset/{output_split}/selected_review/wat_{id}.json", "w"
     ) as file:
         json.dump(ruling, file)
 
 
 for input_split in ["train", "valid", "test"]:
-    with open(f"../Datasets/WatClaimCheck/{input_split}.json", "r") as file:
+    with open(f"../../WatClaimCheck/{input_split}.json", "r") as file:
         data = json.load(file)
 
     with concurrent.futures.ThreadPoolExecutor(max_workers=1) as executor:

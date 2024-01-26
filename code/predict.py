@@ -89,20 +89,20 @@ precision = {}
 recall = {}
 f1 = {}
 
-path = Path(f"./Datasets/FlawCheck/test/evidence/")
+path = Path(f"../dataset/test/evidence/")
 sub = path.glob("*")
 for file in tqdm(list(sub)):
     id = str(file).split("/")[-1]
     name = id.split(".")[0]
-    claim = json.load(open(f"./Datasets/FlawCheck/test/claim/{id}", "r"))
-    evidence = json.load(open(f"./Datasets/FlawCheck/test/evidence/{id}", "r"))
-    review = json.load(open(f"./Datasets/FlawCheck/test/review/{id}", "r"))
+    claim = json.load(open(f"../dataset/test/claim/{id}", "r"))
+    evidence = json.load(open(f"../dataset/test/evidence/{id}", "r"))
+    review = json.load(open(f"../dataset/test/review/{id}", "r"))
     review = str(review)
     prompt = get_baseline_prompt(claim, evidence)
 
     with torch.cuda.device("cuda"):
         response = main(prompt)
-    json.dump(response, open(f"./output/baseline/{id}", "w"))
+    json.dump(response, open(f"../output/baseline/{id}", "w"))
     score = rouge_scorer.compute(predictions=[response], references=[review])
     rouge1[name] = score["rouge1"]
     rouge2[name] = score["rouge2"]
@@ -131,5 +131,5 @@ output = {
     "f1": f1,
 }
 
-with open(f"./baseline_result.json", "w") as file:
+with open(f"../baseline_result.json", "w") as file:
     json.dump(output, file)
