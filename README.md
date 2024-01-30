@@ -69,7 +69,7 @@ We made modifications solely to the ``run_finetune_with_lora.sh.sh`` file, adapt
 ### How to Cite this resource
 
 **Please cite the following paper when referring to FlawCheck in academic publications and papers.**
-
+```
 @misc{kao2024refute,
       title={How We Refute Claims: Automatic Fact-Checking through Flaw Identification and Explanation}, 
       author={Wei-Yu Kao and An-Zi Yen},
@@ -78,4 +78,4 @@ We made modifications solely to the ``run_finetune_with_lora.sh.sh`` file, adapt
       archivePrefix={arXiv},
       primaryClass={cs.CL}
 }
-
+```
