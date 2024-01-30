@@ -1,5 +1,5 @@
 # FlawCheck🔍
-FlawCheck is a flaw-oriented fact-checking dataset introducted in [How We Refute Claims: Automatic Fact-Checking through Flaw Identification and Explanation]().
+FlawCheck is a flaw-oriented fact-checking dataset introducted in [How We Refute Claims: Automatic Fact-Checking through Flaw Identification and Explanation](https://arxiv.org/abs/2401.15312).
 Each claim is annotated with maximum four aspects and the explanations of presence or absence of seven flaws: ``Contradicting facts``, ``Exaggeration``, ``Understatement``, ``Occasional faltering``, ``Insufficient support``, ``Problematic assumptions``, ``Existence of alternative explanations``.
 This dataset encapsulates the expertise of human fact-checking professionals, establishing a new benchmark of flaw-oriented automatic fact-checking. 
 
