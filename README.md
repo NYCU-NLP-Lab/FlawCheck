@@ -65,3 +65,16 @@ The example in ``code/predict.py`` illustrates justification generation using LL
 For finetuning the LLM using LoRA, we utilized the [LMFlow](https://github.com/OptimalScale/LMFlow) framework. 
 Follow the instructions in the original repository to set up the framework correctly for your needs.
 We made modifications solely to the ``run_finetune_with_lora.sh.sh`` file, adapting it for custom settings and data for different components within the proposed RefuteClaim framework.
+
+### How to Cite this resource
+
+** Please cite the following paper when referring to FlawCheck in academic publications and papers.**
+@misc{kao2024refute,
+      title={How We Refute Claims: Automatic Fact-Checking through Flaw Identification and Explanation}, 
+      author={Wei-Yu Kao and An-Zi Yen},
+      year={2024},
+      eprint={2401.15312},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL}
+}
+
