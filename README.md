@@ -3,7 +3,7 @@ FlawCheck is a flaw-oriented fact-checking dataset introducted in [How We Refute
 Each claim is annotated with maximum four aspects and the explanations of presence or absence of seven flaws: ``Contradicting facts``, ``Exaggeration``, ``Understatement``, ``Occasional faltering``, ``Insufficient support``, ``Problematic assumptions``, ``Existence of alternative explanations``.
 This dataset encapsulates the expertise of human fact-checking professionals, establishing a new benchmark of flaw-oriented automatic fact-checking. 
 
-## Information
+## Information (June 2024 Update)
 The paper was officially accepted and published in the WWW 2024 Companion 🎉.
 
 ## Introduction
